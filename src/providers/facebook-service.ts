@@ -12,17 +12,13 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class FacebookService {
-  private accessToken = '384084705293234|wSPHeNducv92NCFwNL27aGGCrXU';
-
-  private graphUrl = 'https://graph.facebook.com/';
-  private graphQuery = `?access_token=${this.accessToken}&date_format=U&fields=posts{from,created_time,message,attachments,link}`;
 
   constructor(public http: Http) {
     console.log('Hello FacebookService Provider');
   }
 
   getPosts(pageName: string): Observable<any[]> {
-    let url = this.graphUrl + pageName + this.graphQuery;
+    let url = `http://localhost:3000/${pageName}`;
 
     return this.http
       .get(url)
